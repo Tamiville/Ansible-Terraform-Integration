@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: update package
+      apt:  update_cache=yes state=latest
+    
+    - name: install nginx
+      apt:  name=nginx state=latest
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
